@@ -11,17 +11,17 @@ public class PageController {
         return "index";
     }
 
-    @GetMapping("/goSignUp")
+    @GetMapping("/signup")
     public String goSignUp(){
         return "signup";
     }
 
-    @GetMapping("/goLogin")
+    @GetMapping("/login")
     public String goLogin(){
         return "login";
     }
 
-    @GetMapping("/goChat")
+    @GetMapping("/chat")
     public String goChat(){
         return "chat";
     }
@@ -31,9 +31,14 @@ public class PageController {
         return "todo";
     }
 
-    @GetMapping("/todoCalendar")
+    @GetMapping("/todocalendar")
     public String goToDoCalendar(){
         return "todocalendar";
+    }
+
+    @GetMapping("/logout")
+    public String goLogout(){
+        return "index";
     }
 
 
