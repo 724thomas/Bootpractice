@@ -4,12 +4,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 @RestController
-public class todoController {
+public class TodoController {
 
     private ArrayList<HashMap<String,String>> todoLists = new ArrayList<>();
 
