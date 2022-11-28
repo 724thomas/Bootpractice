@@ -25,13 +25,21 @@ public class PageController {
             //로그인이 안되어있으면 로그인 페이지
             return "login";
         }else{
-            //로그인이 되어있으면 메인 페이지
             return "redirect:/";
         }
     }
 
     @GetMapping("/chat")
     public String goChat(HttpSession session){
+        //사용자가 원하는 메뉴 (처음에 클릭한 메뉴)
+        if (session.getAttribute("redirect")==null){
+            //사용자가 원하는 메뉴에 처음왔으면 redirect로 저장
+            session.setAttribute("redirect","redirect:/chat");
+        }else{
+            //사용자가 원하는 메뉴에 이미 한번 왔으면 redirect=null로 저장
+            session.setAttribute("redirect",null);
+        }
+
         //로그인이 되어있는지 확인
         if (session.getAttribute("email")==null){
             //로그인이 안되어 있으면 로그인 페이지로
@@ -44,6 +52,15 @@ public class PageController {
 
     @GetMapping("/todo")
     public String goTodo(HttpSession session){
+        //사용자가 원하는 메뉴 (처음에 클릭한 메뉴)
+        if (session.getAttribute("redirect")==null){
+            //사용자가 원하는 메뉴에 처음왔으면 redirect로 저장
+            session.setAttribute("redirect","redirect:/todo");
+        }else{
+            //사용자가 원하는 메뉴에 이미 한번 왔으면 redirect=null로 저장
+            session.setAttribute("redirect",null);
+        }
+
         if (session.getAttribute("email")==null){
             //로그인이 안되어 있으면 로그인 페이지로
             return "redirect:/login";
@@ -54,8 +71,24 @@ public class PageController {
     }
 
     @GetMapping("/todocalendar")
-    public String goToDoCalendar(){
-        return "todocalendar";
+    public String goToDoCalendar(HttpSession session){
+
+        //사용자가 원하는 메뉴 (처음에 클릭한 메뉴)
+        if (session.getAttribute("redirect")==null){
+            //사용자가 원하는 메뉴에 처음왔으면 redirect로 저장
+            session.setAttribute("redirect","redirect:/todocalendar");
+        }else{
+            //사용자가 원하는 메뉴에 이미 한번 왔으면 redirect=null로 저장
+            session.setAttribute("redirect",null);
+        }
+
+        if (session.getAttribute("email")==null){
+            //로그인이 안되어 있으면 로그인 페이지로
+            return "redirect:/login";
+        }else {
+            //로그인이 되어 있으면 달력 페이지로
+            return "todocalendar";
+        }
     }
 
     @GetMapping("/logout")

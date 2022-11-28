@@ -21,8 +21,14 @@ public class MemberController {
             if (mem.get("email").equals(member.get("email")) && mem.get("password").equals(member.get("password"))){
                 // 있으면 세션에 email을 저장
                 session.setAttribute("email",member.get("email"));
-                // 메인페이지로 돌아간다.
-                return "redirect:/";
+                //첫 메뉴가 있는지 확인
+                if (session.getAttribute("redirect")==null){
+                    // 첫 메뉴가 없으면 메인페이지로 돌아간다.
+                    return "redirect:/";
+                }else{
+                    // 첫 메뉴가 있으면 그 메뉴로 돌아간다.
+                    return String.valueOf(session.getAttribute("redirect"));
+                }
             }
         }
         // 매칭되는 아이디, 비밀번호가 없으면 회원가입 페이지로 넘어간다.
