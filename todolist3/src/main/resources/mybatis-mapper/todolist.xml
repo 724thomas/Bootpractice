@@ -9,10 +9,32 @@
             (#{todo})
     </insert>
 
-    <select id="selectTodo" resultType="String">
+    <select id="selectTodo" resultType="HashMap">
         SELECT
-            todo
+            id,
+            todo,
+            indate
         FROM
             todoList
     </select>
+
+    <delete id="deleteTodo" parameterType="HashMap">
+        DELETE
+            FROM
+                todolist
+        WHERE
+            id=#{id}
+    </delete>
+
+<!--    <delete id="deleteTodo" parameterType="int">-->
+<!--        DELETE FROM todolist-->
+<!--        WHERE id = (-->
+<!--            SELECT-->
+<!--                id-->
+<!--            FROM(-->
+<!--                SELECT ROW_NUMBER() over(order by id) as NUM, todolist.* FROM todolist-->
+<!--                ) ask-->
+<!--            WHERE ask.NUM=(#{todo})+1-->
+<!--        )-->
+<!--    </delete>-->
 </mapper>

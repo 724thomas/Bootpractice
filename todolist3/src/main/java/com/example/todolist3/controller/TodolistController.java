@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @RestController
 public class TodolistController {
@@ -19,18 +20,26 @@ public class TodolistController {
     TodoListService todoService;
 
     @GetMapping("/list")
-    public ArrayList<String> getList(){
+    public ArrayList<HashMap<String,Object>> getList(){
         return todoService.selectTodo();
     }
 
     @GetMapping("receiveList")
-    public ArrayList<String> receiveList(String todo){
+    public ArrayList<HashMap<String,Object>> receiveList(String todo){
         todoService.insertTodo(todo);
         return todoService.selectTodo();
     }
     @GetMapping("deleteList")
-    public ArrayList<String> deleteList(int todo){
+    public ArrayList<HashMap<String,Object>> deleteList(int todo){
+        HashMap<String,Object> param = new HashMap<>();
+        param.put("id",todo);
+        todoService.deleteTodo(param);
         return todoService.selectTodo();
     }
+//    @GetMapping("deleteList")
+//    public ArrayList<HashMap<String,Object>> deleteList(int todo){
+//        todoService.deleteTodo(todo);
+//        return todoService.selectTodo();
+//    }
 
 }

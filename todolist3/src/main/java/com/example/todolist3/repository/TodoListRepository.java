@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Repository
 public class TodoListRepository {
@@ -16,7 +17,16 @@ public class TodoListRepository {
         return mapper.insertTodo(todo);
     }
 
-    public ArrayList<String> selectTodo(){
+    public ArrayList<HashMap<String,Object>> selectTodo(){
         return mapper.selectTodo();
     }
+
+    public int deleTodo(HashMap<String,Object> todo){
+        return mapper.deleteTodo(todo);
+    }
+
+//
+//    public int deleteTodo(int todo){
+//        return mapper.deleteTodo(todo);
+//    }
 }
